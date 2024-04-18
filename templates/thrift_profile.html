@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.name }} Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #198754;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        section {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: #198754;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #198754;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #198754;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ event.name }} Details</h1>
+    </header>
+    <section>
+        <h2>Event Information</h2>
+        <p>Date: {{ event.date.strftime('%Y-%m-%d') }}</p>
+        <p>Time: {{ event.time.strftime('%H:%M') }}</p>
+        <p>Location: {{ event.location }}</p>
+    </section>
+    <section>
+        <h2>Clothing Items for Sale:</h2>
+        <ul>
+            {% for item in event.clothing_items %}
+                <li>
+                    <strong>{{ item.item_name }}</strong><br>
+                    Description: {{ item.item_description }}<br>
+                    Price: ${{ item.item_price }}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <a href="{{ url_for('index') }}" class="back-button">Back to Homepage</a>
+    
+</body>
+</html>

@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head Section -->
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Cart</title>
+
+
+    <!-- Bootstrap CSS File -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Custom Css -->
+    <style>
+
+      /* Google Fonts */
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+      
+      
+      *{
+           
+           box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+           list-style: none;
+           font-family: 'Poppins' , sans-serif;
+      
+      }
+      
+      html{
+        
+           scroll-behavior: smooth;
+          
+      }
+
+
+
+   
+      /* ================================ Navbar ============================ */
+    
+      /* Section 1 - header  */
+      
+      header
+      {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 40px 100px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      
+      /* Farm Ez Logo  */
+      
+      .logo
+      {
+        
+        margin-left: 3rem;
+        color:white;
+        font-size: 3rem;
+        font-weight: bolder;
+        border-radius: 1rem;
+        cursor: pointer;
+      
+      }
+      
+      .logo:hover{
+         
+         transition: 0.5s;
+      
+      }
+      
+      
+      
+      /* Navigation bar */
+      
+      .navbar{ 
+           
+           height:auto;
+           width: 100%;
+           padding : 0 0 4.5rem;
+           position: sticky;
+           top: 0;
+           z-index: 999;
+          
+      }
+        
+      
+      .navbar-colored {
+      
+        background-color: #3d7b67;
+        box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
+        transition: background-color 0.5s ease-in-out;
+      
+      }
+      
+      .nav-item{
+       
+            font-family: 'Poppins' , sans-serif;
+            font-size: 1rem;
+            padding: 1rem;
+            font-weight: bolder;
+           
+      }  
+      
+      /* Navbar Ke text ke liye hai  */
+      
+      
+      .navbar-nav .nav-link {
+             color: #ffffff; /* or use the shorthand notation color: white; */
+            
+      }
+      
+      
+      .navbar-nav .nav-link:hover{
+         
+        transition: 0.5s;
+        color: #347464;
+       
+      
+      }
+      
+      .navbar-toggler{
+      
+           color:#FFFFFF;
+      
+      }
+      
+      /* Login Button */
+      
+      .custom-btn {
+      
+        background-color: #FFFFFF; /* white background */
+        color: #347464; /* green text color */
+      
+        border: none;
+        border-radius: 4px;
+        
+        padding: 5px 10px;
+      
+        letter-spacing: 2px;
+        
+        font-size: 1.5rem;
+        font-weight: 800;
+        
+        text-transform: uppercase;
+        cursor: pointer;
+        
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow effect */
+      
+      }
+      
+      .custom-btn:hover {
+      
+        background-color: #347464; /* green background on hover */
+        color: #FFFFFF; /* white text color on hover */
+      
+      }
+      
+      .custom-btn:active {
+      
+        background-color: #008a3d; /* darker green background on active */
+        color: #FFFFFF; /* white text color on active */
+      
+      }
+      
+      /* Register button custom button*/
+      
+      .custom-btn2{
+      
+        background-color:#347464; /* white background */
+        color: #FFFFFF; /* green text color */
+      
+        border: none;
+        border-radius: 4px;
+        
+        padding: 5px 10px;
+        
+        font-size: 1.5rem;
+        font-weight: 800;
+        
+        text-transform: uppercase;
+        cursor: pointer;
+      
+        letter-spacing: 5px;
+        
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow effect */
+      
+      }
+      
+      .custom-btn2:hover {
+      
+        background-color: #548c7c; /* green background on hover */
+        color: #FFFFFF; /* white text color on hover */
+      
+      }
+      
+      .custom-btn2:active {
+      
+        background-color: #548c7c; /* darker green background on active */
+        color: #FFFFFF; /* white text color on active */
+        
+      
+      }
+
+
+      /* Drop Down Menu */
+
+      .custom-btn2.dropdown-toggle::after {
+        display: none;
+      }
+
+
+      .dropdown-menu {
+        
+        background-color: #347464;
+        border: none;
+        border-radius: 2px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        color:#347464;
+
+      }
+
+      .dropdown-item {
+        
+        color: #FFFFFF;
+        font-size: 1.5rem;
+        font-weight: 900;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+
+
+      }
+
+      .dropdown-item:hover, .dropdown-item:focus {
+        background-color: #548c7c;
+        color: #FFFFFF;
+      }
+      
+
+
+
+      
+
+      /* ================================ Image Section ============================ */
+
+      .showcase {
+
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        max-width: 100%;
+      
+      }
+
+      .showcase img {
+        width: 100%; /* Adjust this value as needed to resize the image */
+        height: auto; /* To maintain the image's aspect ratio */
+      }
+
+      /* Center the text within the section */
+      .showcase .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white; /* Customize text color */
+      }
+
+      /* Style for the text within the section */
+      .showcase h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+      }
+
+      .showcase h6 {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .showcase a {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #748875; /* Button background color */
+        color: white; /* Button text color */
+        text-decoration: none;
+        margin: 10px;
+        border-radius: 5px; /* Rounded button corners */
+      }
+
+      .showcase a:hover {
+        background: #4a594a; /* Button background color on hover */
+      }
+
+      /* Remove any default list styles from the links */
+      .showcase ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+        
+
+
+      
+      /*  Content Text     */
+      
+      .text
+      {
+        text-align: center;   
+        position: relative;
+        width: 90%;
+        margin-top: 3rem;
+        margin: auto;
+        z-index: 10;
+      }
+      
+      
+      .text h1
+      { 
+       
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 10rem;
+        font-weight: 850;
+        color: #fff;
+        line-height: 1em;
+        text-transform: uppercase;
+      
+      }
+      
+      .text h1:hover{
+            
+            transition: 0.5s;
+            letter-spacing: 2px;
+            
+      
+      }
+      
+      .text h6
+      {
+        
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1em;
+        text-transform: uppercase;
+      
+      
+      }
+      
+      .text p
+      {
+        font-size: 1.1em;
+        color: #fff;
+        margin: 20px 0;
+        font-weight: 400;
+        max-width: 700px;
+      }
+      
+      .text a
+      {
+      
+        display: inline-block;
+        font-size: 1.5rem;
+        font-weight: 500;
+        background:#357162;
+        padding: 10px 30px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 40px;
+        color: white;
+        letter-spacing: 2px;
+        transition: 0.2s;
+        margin-right: 2rem;
+      
+      }
+      .text a:hover
+      {
+          transition: 0.5s;
+          background-color: #f3d34c;
+      }
+      
+
+      /* Custom styles for the search form */
+      .custom-search-form {
+            
+         margin-left: 23rem;
+         justify-content: center;
+         text-align: center;
+
+      }
+
+      .custom-search-input {
+       
+        
+        border: none; /* Remove default input border */
+        border-radius: 5px; /* Rounded corners for the input */
+        justify-content: center;
+        text-indent: 30px;
+    
+
+      }
+
+      .custom-search-button {
+          
+         color: white;
+         font-weight: bolder;
+         font-size: large;
+
+      }
+      
+      .custom-search-input::placeholder {
+        text-align: center; /* Center-align the placeholder text */
+        margin-top: 5px; /* Adjust the top margin as needed */
+        color: #999; /* Adjust the color as needed */
+        font-size: 20px;
+      }
+
+
+      /* ================================ Feature Section ============================ */
+      
+      #features{
+        
+        position: relative;
+        z-index: 2;
+        padding : 5%  10%;
+        background-color: whitesmoke;
+      
+      }
+      
+      /* Our Feature */
+      
+      .feature-heading{
+         
+         text-align: center;
+         padding:  2rem 0;
+         font-size: 3rem;
+         font-weight: 800;
+         margin-bottom: 3rem;
+         
+      
+      }
+      
+      .feature-heading span{
+      
+          
+           background: #357162;
+           color: #ffffff;
+           display: inline-block;
+           padding: 0.5rem 3rem;
+           clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+       
+      }
+      
+      .feature-heading span:hover{
+      
+            background: #548c7c;
+            box-shadow: #111;
+       
+      }
+      
+      
+      .feature-box{
+        
+         text-align: center;
+         font-weight: bolder;
+         padding   : 5%;
+      
+      }
+      
+      
+      .icon{  
+       color: #357162;
+       margin-bottom: 1rem;
+      }
+      
+      .icon:hover{
+        
+          color: #28a788;
+          transition: 0.2s;
+      
+      }
+      
+      .feature-para{
+           
+            margin-top: 1rem;
+            font-size: 17px;
+            font-weight: bolder;
+      
+      }
+      
+      
+      
+      /* ================================ News Section  ============================ */
+    
+      
+
+
+      /* News Section */
+      #news {
+        padding: 2% 10%;
+        padding-top: 0;
+        text-align: center;
+        background-color: #659c85;
+      }
+
+      /* News Cards Container */
+      .news-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* Individual News Card */
+      .news-card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin: 20px;
+        padding: 20px;
+        width: 30%; /* Adjust the width to your preference */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+      }
+
+      /* News Image */
+      .news-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      /* News Title */
+      .news-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 10px 0;
+      }
+
+      /* News Description */
+      .news-description {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      /* Read More Link */
+      .read-more-link {
+        text-decoration: none;
+        color: #357162;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .read-more-link:hover {
+        color: #548c7c;
+      }
+      
+      /* ================================ About Us ============================ */
+      
+
+      #about-us {
+        padding: 50px;
+        background-color: whitesmoke;
+        text-align: center;
+      }
+      
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      
+      .column {
+      
+           position: relative;
+           flex: 1;
+           padding: 50px;
+           margin-bottom: 30px;
+        
+      
+      }
+      
+      .about-img {
+        width: 100%;
+        height: auto;
+      }
+      
+      .about-heading{
+      
+        font-size: 4rem;
+        font-weight: bolder;
+        margin-bottom: 1rem;
+        text-align: left;
+        color:#357162;
+      
+      }
+
+      .about-heading:hover{
+        color:#28a788;
+        transition: 0.2s;
+      }
+      
+      
+      
+      .about-para{
+        
+           margin-top: 30px;
+           font-size: 1.4rem;
+           text-align: left;
+           font-weight: 600;
+           
+      }
+      
+      
+      /* ================================ Call To Action ============================ */
+      
+      /* CSS Styles */
+      #calltoaction {
+        position: relative;
+        z-index: 2;
+        padding: 5% 10%;
+        background-color: #659c85;
+      }
+
+      .cta-heading {
+        margin: auto;
+        width: 80%;
+        color: whitesmoke;
+        font-size: 2rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bolder;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .cta-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cta-text {
+        flex: 1;
+        width: 60%;
+        padding: 20px;
+      }
+
+      .cta-text h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .cta-text p {
+        font-size: 1.2rem;
+        color: #fff;
+      }
+
+      .cta-text heading2{
+         font-weight: bolder;
+         font-size: 3rem;
+         color:#008a3d;
+      }
+
+      .btn2 {
+        display: inline-block;
+        font-size: 1.2rem;
+        font-weight: 500;
+        background: #357162;
+        padding: 10px 30px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 10px;
+        color: white;
+        letter-spacing: 2px;
+        transition: 0.2s;
+      }
+
+      .btn2:hover {
+        transition: 0.5s;
+        background-color: #f3d34c;
+      }
+
+      .cta-image {
+        flex: 1;
+        width: 35%;
+        margin-left: 5%;
+        /* Add any styling you need for the image container */
+      }
+
+      /* Style your image as needed */
+      
+      .cta-image img {
+        width: 100%;
+        height: auto;
+      }
+      
+      h2.heading2 {
+        font-size: 2rem !important;
+        color:#255146;
+    
+      }
+
+
+    
+      /* ================================ Footer ============================ */
+      
+       
+      #footer{
+        
+        position: relative;
+        z-index: 2;
+      
+        padding : 5%  10%;
+        background-color: whitesmoke;
+      
+      }
+      
+      
+      /* Copyright logo  */
+    
+      .copyright-logo{
+      
+      
+             float:right;
+             margin-right: 5rem;
+      
+             color: #357162;
+             font-size: 3rem;
+             font-weight: bolder;
+             cursor: pointer;
+                 
+      
+      }
+      .copyright-logo:hover{
+      
+            color: #449b85;
+      
+      }
+      
+      .Copyright-box{
+           
+          text-align: center;
+          font-weight: bolder;
+          padding   : 5%;
+      
+      }
+      
+      .Copyright-icon{
+           
+           color: #357162;
+           margin-bottom: 4rem;
+           margin-left: 5.5rem;
+         
+      
+      }
+      
+      .Copyright-icon:hover{
+         
+           color: #28a788;
+           transition: 0.2s;
+       
+      }
+      
+    
+      
+      /* Social Handles */
+      
+      
+      .Social-media{
+      
+        text-align: center;
+        font-weight: bolder;
+        padding   : 5%;
+      
+      }
+      
+      .social-icon{  
+      
+        color: #357162;
+        margin-bottom: 1rem;
+        padding:10px;
+      
+      }
+      
+      
+      .social-icon:hover{
+         
+          color: #28a788;
+          transition: 0.2s;
+       
+      }
+      
+      .Social-media p{
+              
+              color:#357162;
+              text-align: center;
+              font-size: 2rem;
+              margin-bottom: 3rem;
+      
+      }
+      
+      .Social-media p:hover{
+      
+          color: #28a788;
+          transition: 0.2s;
+      
+      }
+      
+      
+      
+      /* Get A Newsletter  */
+      
+      
+      .Newsletter{
+          
+        text-align: center;
+        font-weight: bolder;
+        padding   : 5%;
+       
+      }
+      
+      
+      .Newsletter p{
+              
+        color:#357162;
+        text-align: left;
+        font-size: 2rem;
+        margin-top: 3rem;
+      
+      }
+      
+      .Newsletter p:hover{
+      
+         color: #28a788;
+         transition: 0.2s;
+      
+      }
+      
+      .Newsletter h6{
+          
+          font-size: 1rem;
+          text-align: left;
+          margin-bottom: 1rem;
+          
+      }
+      
+      
+      form{
+      
+      
+          text-align: left;
+          font-weight: 500;
+          width: fit-content;
+      
+      
+      }
+      
+      form input{
+      
+        border:0;
+        outline: none;
+        height: 70px;
+        width: 400px;
+        font-size: 16px;
+      
+      
+      }
+      
+      
+      form button{
+      
+          border-radius: 1px;
+          border:none;
+          background: #357162;
+          height: 70px;
+          width: 200px;
+          cursor: pointer;
+      
+      }
+      
+      form button:hover{
+      
+          background-color: #449b85;
+      
+      }
+
+      .custom-button-store {
+      
+          background-color: #357162;
+          color: #ffffff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          margin-right: 10px; /* Add margin if needed */
+          margin-top: 2rem;
+          cursor: pointer;
+          font-size: 30px;
+      
+      }
+
+      .custom-button-products {
+      
+          background-color: #357162;
+          color: #ffffff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          margin-right: 15px; /* Add margin if needed */
+          margin-top: 2rem;
+          cursor: pointer;
+          font-size: 30px;
+      
+      }
+      
+      .custom-button-products:hover{
+          transition: 0.5s;
+          background-color: #f3d34c;
+      }
+      
+      .custom-button-store:hover{
+          transition: 0.5s;
+          background-color: #f3d34c;
+      }
+
+      .custom-button-store i,
+      .custom-button-products i {
+          margin-right: 8px; /* Adjust the amount of space as needed */
+      }
+
+
+    </style>
+
+
+    
+    <!-- Font Awesome Files -->
+    <script src="https://kit.fontawesome.com/aed243d69b.js" crossorigin="anonymous"></script>
+
+
+    <!--    Bootstrap js files-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+
+</head>
+
+
+
+<!-- Body Section -->
+
+<body>
+    
+     <!--  =====================  Navbar  ================ -->
+
+     <header>
+             
+          <!--Navbar-->
+          <nav class="navbar fixed-top navbar-expand-lg navbar-colored">
+               
+               <h4 class = "logo">Eco<i class="fa-solid fa-cart-shopping"></i></h4>
+
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+               </button>
+       
+               <div class="collapse navbar-collapse" id="navbarNav">
+                
+                      <ul class="navbar-nav ml-auto">
+
+                          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                      </ul>
+                     
+
+              
+                      <li class="nav-item">
+
+                        {% if 'farmer_id' in session %}
+                        <a href="/me/{{ session['farmer_id'] }}"><button class="custom-btn">My Profile</button></a>
+                        <a href="/logout"><button class="custom-btn">Logout</button></a>
+                        <a href="/s_signin"><button class="custom-btn">Register as a Seller!</button></a>
+                            
+
+                        {% else %}
+                        <a href="/signin"><button class="custom-btn">Login</button></a>
+                        
+                        {% endif %}
+
+                      </li>
+
+
+                      <li class="nav-item dropdown">
+
+                            <button class="custom-btn2 dropdown-toggle" type="button" id="languageDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Options
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="moreOptionsDropdown">
+                              <a class="dropdown-item" href="/highlights">Videos</a>
+                              <a class="dropdown-item" href="/quiz">Quiz</a>
+                              <a class="dropdown-item" href="/news">News</a>
+                            </div>
+                      </li>                      
+
+
+                      <li class="nav-item dropdown">
+
+                          <button class="custom-btn2 dropdown-toggle" type="button" id="languageDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-language"></i>
+                          </button>
+
+                        <div class="dropdown-menu" aria-labelledby="languageDropdownMenu">
+                          <a class="dropdown-item" href="/">English</a>
+                          <a class="dropdown-item" href="/hi">हिंदी</a>
+                          <a class="dropdown-item" href="/ma">मराठी</a>
+                        </div>
+                        
+                    </li>
+                    
+               </div>
+
+          </nav>
+
+    </header>
+    
+
+     <!--  =====================  Image Section ================ --> 
+ 
+     <section id = "video" class="showcase">
+          
+          <img src="static/uploads/eco_girl.jpg" alt="Sustainability Image">
+          
+          <!--  Content -->
+          <div class="text">
+
+            <h1 class = "content-heading">Eco Cart</h1> 
+            
+            <a href="/map">Locate Stores</a>
+            <a href="/buy">Buy Products</a>
+            <a href="/tmap">Thrifting Events!</a>
+            
+          </div>
+     
+      </section>
+
+
+      <!--  =====================  Features Section  ================  -->
+
+      <section id="features">
+          
+          <h1 class = "feature-heading"> Our <span>Features</span></h1>
+          
+          <div class = "row">
+               
+            <div class = "feature-box col-lg-4">
+              <i class="icon fas fa-magnifying-glass-location fa-4x"></i>
+              <h3>Quick Search.</h3>
+              <p class = "feature-para">Search Your Desired Stores In An Instant.</p>
+            </div>
+              
+            <div class = "feature-box col-lg-4">
+              <i class = "icon fas fa-recycle fa-4x"></i>
+              <h3>Eco-Friendly Products</h3>
+              <p class = "feature-para">Check For Eco Conscious Collections.</p>
+            </div>  
+              
+            <div class = "feature-box col-lg-4">
+              <i class = "icon fas fa-list-check fa-4x"></i>
+              <h3>Certified Product Details</h3>
+              <p class = "feature-para">Explore Verified Sustainable Choices.</p>
+            </div>
+        
+          </div>
+
+       </section>   
+       
+
+       <!--  =====================  News Section  ================  -->
+
+
+        <!-- News Section -->
+        
+        <section id="news" class="newspart">
+            <h1 class="feature-heading"><span>News</span></h1>
+            
+            <div class="news-cards">
+              <!-- News Cards will be dynamically loaded here -->
+            </div>
+        </section>
+
+
+       
+
+       <!--  =====================  About US Section  ================  -->
+
+
+       <section id = "about-us">
+
+            <h1 class = "feature-heading"><span>About !</span></h1>
+            
+            <div class="row">
+
+              <div class="column">
+              
+                <h3 class = "about-heading">#Team DTG</h3>
+                <p class="about-para">Eco-Cart is an Eco-friendly Marketplace with a Vision to Promote Sustainable Living and Connect Consumers with Green Choices.</p>
+                <p class="about-para">Our dedicated team of software developers initiated this project to address the growing need for eco-conscious shopping. We aim to connect people with verified sustainable products, making eco-friendly choices accessible to all.</p>
+                
+              </div>
+
+              <div class="column">
+                <img class = "about-img" src="static/uploads/team.jpg" alt="Team Photo">
+              </div>
+ 
+            </div>
+ 
+       </section>
+
+
+
+
+      <!--  =====================  CAll To Action Section  ================  -->
+      <!-- HTML Structure -->
+      <section id="calltoaction">
+        <div class="cta-heading">
+          <h1 class="feature-heading"><span>Learn Eco Innovations</span></h1>
+        </div>
+
+        <div class="cta-content">
+
+          <div class="cta-text">
+
+            <h2 class = "heading2" >Discover Sustainable Crafting</h2>
+            <p>
+              Dive into the art and science of crafting eco-conscious products. Explore the
+              intricate craftsmanship and sustainable practices behind the creation of
+              environmentally friendly goods. From ingenious materials to eco-conscious
+              manufacturing techniques, uncover the secrets of minimizing ecological
+              footprints. Delve into the journey of creating products that prioritize our
+              planet's well-being.
+            </p>
+            <a href="https://www.detpak.com/ecoproducts/" class="btn2">Read more</a>
+
+          </div>
+
+          <div class="cta-image">
+            <!-- YouTube Video Embed -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/EQAjb0iJ5-4" frameborder="0" allowfullscreen></iframe>
+          </div>
+
+          
+
+        </div>
+      </section>
+
+
+       
+
+
+    <!--  =====================  Footer Section  ================  -->
+
+     <section id="Footer">
+          
+        <div class = "row">
+
+          <!-- Logo And Copyright Rights -->
+          
+          <div class = "Copyright-box col-lg-4">
+
+            <div class = "footer-logo">
+
+              <i class="Copyright-icon fas fa-cart-shopping fa-4x"></i>
+              <h6 class = "copyright-logo">Eco Cart</h6>
+              <p>@2023.Eco Cart. All rights reserved.</p>
+            
+            </div>
+
+          </div>
+
+          <div class = "Social-media col-lg-4">
+            
+            <p>Social Handles</p>
+            
+            <div class = "Handles"> 
+              
+              <i  class= "social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+              <i  class= "social-icon fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+              <i  class= "social-icon fa fa-reddit-square fa-3x" aria-hidden="true"></i>
+              <i  class= "social-icon fa fa-envelope-square fa-3x" aria-hidden="true"></i>
+            
+            </div>
+
+          </div>
+
+
+          <div class = "Newsletter col-lg-4">
+            
+            <p>GET A NEWSLETTER!</p>
+            
+            <div class = "News">
+               
+                 <h6>Subscribe To Our Newsletter For Daily Updates.</h6>
+                 
+                 <form>
+                     <input type = "email" name = "Email" placeholder = "Your email id" required>
+                     <button class = "submit-btn" type="submit" class="btn">Subscribe</button>
+                  </form>
+
+            </div>
+
+          </div>
+
+        </div>
+          
+        </div>
+
+     </section>  
+
+
+
+
+     <script>
+
+            window.addEventListener('scroll', function() {
+              var navbar = document.querySelector('nav');
+              var scrollPosition = window.pageYOffset;
+           
+              if (scrollPosition > 0) {
+                navbar.classList.add('navbar-colored');
+              } else {
+                navbar.classList.remove('navbar-colored');
+              }
+            });
+
+     </script>
+
+
+
+    
+
+    <!-- Link to the "/map" route -->
+
+    <!-- Signup button linking to the "/account" route -->
+    <script>
+        const fetchTopNews = async () => {
+          try {
+            const response = await fetch("api/news");
+            const data = await response.json();
+            const newsCardsContainer = document.querySelector(".news-cards");
+            let newsCardsHTML = "";
+  
+            for (let i = 0; i < data.length; i++) {
+              const item = data[i];
+              newsCardsHTML += `
+                <div class="news-card">
+                  <img src="${item.urlToImage}" alt="News Image ${i + 1}" class="news-image">
+                  <h3 class="news-title">${item.title}</h3>
+                  <p class="news-description">${item.description}</p>
+                  <a href="${item.url}" target="_blank" class="read-more-link">Read more</a>
+                </div>
+              `;
+            }
+  
+            newsCardsContainer.innerHTML = newsCardsHTML;
+  
+          } catch (error) {
+            console.error("Error fetching top news:", error);
+          }
+        };
+  
+        fetchTopNews();
+    </script>
+  
+</body>
+</html>
+

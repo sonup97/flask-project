@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+     
+    <style>
+
+      /* Google Fonts */
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+        *{
+            
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Poppins' , sans-serif;
+        
+        }
+        
+        html{
+            scroll-behavior: smooth;  
+        }
+
+        .card-wrapper{
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        img{
+            width: 100%;
+            display: block;
+        }
+        .img-display{
+            overflow: hidden;
+        }
+        .img-showcase{
+            display: flex;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+        .img-showcase img{
+            min-width: 100%;
+        }
+        .img-select{
+            display: flex;
+        }
+        .img-item{
+            margin: 0.3rem;
+        }
+        .img-item:nth-child(1),
+        .img-item:nth-child(2),
+        .img-item:nth-child(3){
+            margin-right: 0;
+        }
+        .img-item:hover{
+            opacity: 0.8;
+        }
+        .product-content{
+            padding: 2rem 1rem;
+        }
+
+        .product-title{
+            font-size: 3rem;
+            font-weight: bolder;
+            position: relative;
+            color: #275147;
+            margin: 1rem 0;
+        }
+
+        .product-link{
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            background: #256eff;
+            color: #fff;
+            padding: 0 0.3rem;
+            transition: all 0.5s ease;
+        }
+        .product-link:hover{
+            opacity: 0.9;
+        }
+        .product-rating{
+            color: #ffc107;
+        }
+        .product-rating span{
+            font-weight: 600;
+            color: #252525;
+        }
+
+        .product-price{
+            font-size: 2rem;
+            font-weight: 700;
+            color:#2c5952;
+        }
+        .product-price span{
+            font-weight: 400;
+        }
+
+        .product-detail h2{
+            text-transform: capitalize;
+            color: #275147;
+            padding-bottom: 0.6rem;
+        }
+        .product-detail p{
+            font-size: 0.9rem;
+            padding: 0.3rem;
+            opacity: 0.8;
+        }
+        .product-detail ul{
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .product-detail ul li {
+            margin: 0;
+            list-style: none;
+            margin: 0.4rem 0;
+            font-weight: bolder;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+
+
+        .product-detail ul li span{
+            font-weight: 400;
+        }
+
+        .product-detail h2 {
+            margin-top: 2rem;
+        }
+
+        /* Purchase Info */
+        .purchase-info {
+            margin: 1.5rem 0;
+        }
+
+        .purchase-info input,
+        .purchase-info .btn {
+            border: 1.5px solid #ddd;
+            border-radius: 25px;
+            text-align: center;
+            padding: 0.45rem 0.8rem;
+            outline: 0;
+            margin-right: 0.2rem;
+            margin-bottom: 1rem;
+            transition: opacity 0.3s; /* Add a smooth hover effect */
+        }
+
+        .purchase-info input {
+            width: 60px;
+        }
+
+        .purchase-info .btn {
+            cursor: pointer;
+            color: #fff;
+            font-size: 1rem; /* Adjust the font size as needed */
+            padding: 0.6rem 1rem; /* Adjust padding for better size */
+            width: 150px; /* Adjust the width for better size */
+        }
+
+        .purchase-info .btn:first-of-type {
+            background: #275147;
+        }
+
+        .purchase-info .btn:last-of-type {
+            background: #f64749;
+        }
+
+        .purchase-info .btn:hover {
+            opacity: 0.9;
+        }
+
+        .purchase-info input{
+            width: 150px;
+            font-weight: bolder;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .social-links p{
+            font-size: 2rem;
+            font-weight: bolder;
+            color:#275147;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            color: #357162;
+            border: 2px solid #2c5952; /* Use a slightly darker shade of #357162 */
+            margin: 0 0.2rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.5s ease;
+        }
+
+        .social-links a:hover {
+            background: #275147;
+            border-color: transparent;
+            color: #fff;
+        }
+
+        /* Custom styling for the number input */
+        .custom-input {
+            width: 50px; /* Adjust the width as needed */
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #f9f9f9;
+            /* Add more styles as needed */
+        }
+
+        @media screen and (min-width: 992px){
+            .card{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 1.5rem;
+            }
+            .card-wrapper{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .product-imgs{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .product-content{
+                padding-top: 0;
+            }
+        }
+
+        /* CSS for Product Detail Page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            margin-left:500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .product-details {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-details img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .product-details h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .product-details p {
+            font-size: 16px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+/* Add more styles as needed */
+
+
+    </style>
+
+  </head>
+
+  <body>
+    
+    <div class = "card-wrapper">
+
+      <div class = "card">
+
+        <!-- card left -->
+
+        <!-- card right -->
+        <div class = "product-content">
+         
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Product Detail</title>
+                <!-- Add your CSS styles here for styling the product detail page -->
+            </head>
+            <body>
+                <h1>Product Detail</h1>
+            
+                <div class="product-details">
+                    <img src="{{ url_for('static', filename='uploads/' + product['image_url']) }}" alt="{{ product['Product_Name'] }}" width="200" height="200">
+                    <h2>{{ product['Product_Name'] }}</h2>
+                    <p><strong>Price per Unit:</strong> ${{ product['price_per_unit'] }}</p>
+                    <p><strong>Brand:</strong> {{ product['Brand'] }}</p>
+                    <p><strong>Category:</strong> {{ product['Category'] }}</p>
+                    <p><strong>Carbon Footprint:</strong> {{ product['Carbon_Footprint_(kg CO2e)'] }} kg CO2e</p>
+                    <p><strong>Water Usage:</strong> {{ product['Water_Usage_(liters)'] }} liters</p>
+                    <p><strong>Recyclability:</strong> {{ product['Recyclability'] }}</p>
+                    <p><strong>Certification:</strong> {{ product['Certification'] }}</p>
+                    <p><strong>Made in India:</strong> {{ product['Made_in_India'] }}</p>
+                    <!-- Add more product details here as needed -->
+                </div>
+            
+                <a href="/buy">Back to Product List</a>
+            </body>
+            </html>
+            
+
+
+          <div class = "purchase-info">
+
+            <input type="number" min="0" value="1" class="custom-input">
+
+            <button type = "button" class = "btn">
+              Add to Cart <i class = "fas fa-shopping-cart "></i>
+            </button>
+
+            <button type = "button" class = "btn">Buy Now !</button>
+
+          </div>
+
+
+          <div class = "social-links">
+            <p>Share At : </p>
+
+            <a href = "#">
+              <i class = "fab fa-facebook-f fa-2x"></i>
+            </a>
+
+            <a href = "#">
+              <i class = "fab fa-twitter fa-2x"></i>
+            </a>
+
+            <a href = "#">
+              <i class = "fab fa-instagram fa-2x"></i>
+            </a>
+
+            <a href = "#">
+              <i class = "fab fa-whatsapp fa-2x"></i>
+            </a>
+
+            <a href = "#">
+              <i class = "fab fa-pinterest fa-2x"></i>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+
+      // For Image Sliding only.
+      const imgs = document.querySelectorAll('.img-select a');
+      const imgBtns = [...imgs];
+      let imgId = 1;
+
+      imgBtns.forEach((imgItem) => {
+          imgItem.addEventListener('click', (event) => {
+              event.preventDefault();
+              imgId = imgItem.dataset.id;
+              slideImage();
+          });
+      });
+
+      function slideImage(){
+          const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+          document.querySelector('.img-showcase').style.transform = translateX(${- (imgId - 1) * displayWidth}px);
+      }
+
+      window.addEventListener('resize', slideImage);
+    </script>
+
+  </body>
+</html>

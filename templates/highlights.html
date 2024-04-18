@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Some Learning</title>
+  <!-- Bootstrap CSS File -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/MarkerCluster.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/MarkerCluster.Default.css') }}">
+
+  <style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+    * {
+
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Poppins', sans-serif;
+
+    }
+
+
+    header {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+
+    /* Farm Ez Logo  */
+
+    .logo {
+
+      margin-left: 1rem;
+      color: whitesmoke;
+      font-size: 3rem;
+      font-weight: bolder;
+      border-radius: 1rem;
+      cursor: pointer;
+
+    }
+
+    .logo:hover {
+
+      color: #347464;
+      transition: 0.5s;
+
+    }
+
+
+
+    /* Navigation bar */
+
+    .navbar {
+
+      height: auto;
+      width: 100%;
+      padding: 0 0 4.5rem;
+
+      position: sticky;
+      top: 0;
+      z-index: 0;
+
+    }
+
+
+    .navbar-colored {
+
+      background-color: #3d7b67;
+      box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.5);
+      transition: background-color 0.5s ease-in-out;
+
+    }
+
+    .nav-item {
+
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      padding: 1rem;
+      font-weight: bolder;
+
+    }
+
+    /* Navbar Ke text ke liye hai  */
+
+
+    .navbar-nav .nav-link {
+      color: #ffffff;
+      /* or use the shorthand notation color: white; */
+
+    }
+
+
+    .navbar-nav .nav-link:hover {
+
+      transition: 0.5s;
+      color: #347464;
+
+
+    }
+
+    .navbar-toggler {
+
+      color: #FFFFFF;
+
+    }
+
+    /* Register button custom button*/
+
+    .custom-btn2 {
+
+      background-color: #347464;
+      /* white background */
+      color: #FFFFFF;
+      /* green text color */
+
+      border: none;
+      border-radius: 4px;
+
+      padding: 5px 10px;
+
+      font-size: 1.5rem;
+      font-weight: 800;
+
+      text-transform: uppercase;
+      cursor: pointer;
+
+      letter-spacing: 5px;
+
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      /* subtle shadow effect */
+
+    }
+
+    .custom-btn2:hover {
+
+      background-color: #548c7c;
+      /* green background on hover */
+      color: #FFFFFF;
+      /* white text color on hover */
+
+    }
+
+    .custom-btn2:active {
+
+      background-color: #548c7c;
+      /* darker green background on active */
+      color: #FFFFFF;
+      /* white text color on active */
+
+    }
+
+
+    /* New container for background image and video */
+    .video-container {
+      position: relative;
+      width: 100%;
+      margin-top: 90px;
+      max-width: 1000px;
+      /* Limit the video container width if needed */
+      margin-right: 10rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+
+    .main-video {
+
+      width: 60%;
+      margin-left: 2rem;
+
+    }
+
+    .main-video .title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      padding: 10px;
+      border: 2px solid #000;
+      border-radius: 20px;
+      -webkit-text-stroke: 2px #000;
+      /* For WebKit-based browsers (Chrome, Safari, Opera) */
+
+    }
+
+
+    .main-video video {
+      width: 100%;
+      /* Video will take up the full width of the container */
+      border-radius: 0.5rem;
+      object-fit: cover;
+      /* Keep the video size while filling the container */
+    }
+
+
+
+    /* Video Playlist */
+    .video-playlist {
+      width: 36%;
+      max-width: 1200px;
+      height: 40%;
+      margin: 0 auto 4rem;
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .video-playlist .title {
+      color: white;
+      font-size: 35px;
+      font-weight: 100;
+      padding-left: 1rem;
+    }
+
+    .video-playlist>p {
+      font-size: 20px;
+      padding: 1rem;
+      color: var(--secondary);
+    }
+
+    .video-playlist .videos {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .video-playlist .video {
+      min-width: 200px;
+      height: 80px;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      background-color: #444;
+    }
+
+    .video-playlist .video h4 {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .video-playlist .video p {
+      font-size: 0.8rem;
+      color: #bbb;
+    }
+
+    /* Set the background image and adjust the size and positioning */
+    .background-container {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 850px;
+      /* You can adjust the height as needed */
+      position: relative;
+    }
+
+    /* Style the video element and position it on top of the background */
+    .video-overlay {
+      width: 100%;
+      height: 90%;
+      position: absolute;
+      top: 100px;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -50px;
+      /* Adjust the margin-top value as needed */
+    }
+
+    .video-overlay video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+
+
+    /* Footer Section :: */
+
+    #footer {
+
+
+      position: relative;
+      z-index: 2;
+
+      padding: 20px 0;
+      background-color: whitesmoke;
+
+    }
+
+    #Footer .col-lg-4 {
+      padding: 10px;
+      /* Adjust the padding around each column's content */
+    }
+
+    .footer-logo {
+
+      margin-top: 4rem;
+
+    }
+
+    .row {
+
+      background-color: #2f6654;
+
+
+    }
+
+    /* Copyright logo  */
+
+
+    .copyright-logo {
+
+
+      float: right;
+      margin-right: 5rem;
+
+      color: white;
+      font-size: 3rem;
+      font-weight: bolder;
+      cursor: pointer;
+
+
+    }
+
+    .copyright-logo:hover {
+
+      color: #449b85;
+
+    }
+
+    .Copyright-box {
+
+      text-align: center;
+      font-weight: bolder;
+      padding: 5%;
+
+    }
+
+    .Copyright-icon {
+
+      color: white;
+      margin-bottom: 4rem;
+      margin-left: 5.5rem;
+
+
+    }
+
+    .Copyright-icon:hover {
+
+      color: #28a788;
+      transition: 0.2s;
+
+    }
+
+
+
+
+    /* Social Handles */
+
+
+    .Social-media {
+
+
+      text-align: center;
+      font-weight: bolder;
+      padding: 5%;
+
+    }
+
+    .Social-media p {
+
+      margin-top: 3.4rem;
+
+    }
+
+    .social-icon {
+
+      margin-top: 2rem;
+      color: white;
+      margin-bottom: 1rem;
+      padding: 10px;
+
+    }
+
+
+    .social-icon:hover {
+
+      color: #28a788;
+      transition: 0.2s;
+
+    }
+
+    .Social-media p {
+
+      color: white;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+
+    }
+
+    .Social-media p:hover {
+
+      color: #28a788;
+      transition: 0.2s;
+
+    }
+
+
+
+    /* Get A Newsletter  */
+
+
+    .Newsletter {
+
+      text-align: center;
+      font-weight: bolder;
+      padding: 5%;
+
+    }
+
+
+    .Newsletter p {
+
+      color: white;
+      text-align: left;
+      font-size: 2rem;
+      margin-top: 3rem;
+
+    }
+
+    .Newsletter p:hover {
+
+      color: #28a788;
+      transition: 0.2s;
+
+    }
+
+    .Newsletter h6 {
+
+      font-size: 1rem;
+      text-align: left;
+      margin-bottom: 1rem;
+
+    }
+
+    .footer-form {
+
+      text-align: left;
+      font-weight: 500;
+      width: fit-content;
+
+    }
+
+    .footer-form input {
+
+      border: 0;
+      outline: none;
+      height: 70px;
+      width: 400px;
+      font-size: 16px;
+
+    }
+
+
+    .footer-form button {
+
+      border-radius: 1px;
+      border: none;
+      background: #f3d34c;
+      height: 70px;
+      width: 200px;
+      cursor: pointer;
+      margin-top: 4px;
+
+    }
+
+
+    .footer-form button:hover {
+
+      background-color: #449b85;
+
+    }
+
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-bottom: 5rem;
+      margin-top: 1.5rem;
+      padding: 20px;
+    }
+
+    .search-form {
+      margin-bottom: 20px;
+    }
+
+    .crop-listings {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .crop-card {
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+      flex: 0 0 calc(33.33% - 20px);
+      /* Three cards in a row with gap */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      background-color: #f5f5f5;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .crop-card:hover {
+      transform: translateY(-5px);
+      /* Lift the card on hover */
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .crop-card img {
+      max-width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .crop-card .crop-details {
+      background-color: #347464;
+      /* Background color for crop name, price, and description */
+      color: white;
+      /* Text color for crop details */
+      padding: 10px;
+    }
+
+    .crop-card h5 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .crop-card p {
+      margin-bottom: 10px;
+    }
+
+    .add-to-list-button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .add-to-list-button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Adjust the button size */
+    .search-form button,
+    .go-to-list-button button {
+      padding: 8px 20px;
+      font-size: 14px;
+    }
+
+    /* Align the button horizontally with the search input */
+    .search-form form,
+    .go-to-list-button form {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Add spacing between input and button */
+    .search-form .input-group-append {
+      margin-left: 10px;
+    }
+
+    /* Adjust the positioning of the shopping list button */
+    .go-to-list-button {
+      text-align: center;
+    }
+
+    /* Ensure proper button alignment on small screens */
+    @media (max-width: 767px) {
+      .search-form {
+        display: block;
+      }
+
+      .search-form form,
+      .go-to-list-button form {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+
+    .custom-button button {
+      background-color: #f3d34c;
+      /* Change this to your desired color */
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .custom-button button:hover {
+      background-color: #f3d13c;
+      /* Change this to the hover color */
+    }
+
+
+
+    .feature-heading {
+
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 3rem;
+      font-weight: 800;
+
+
+
+    }
+
+    .feature-heading span {
+
+
+      background: #357162;
+      color: #ffffff;
+      display: inline-block;
+      padding: 0.5rem 3rem;
+      clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+
+    }
+
+    .feature-heading span:hover {
+
+      background: #548c7c;
+      box-shadow: #111;
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <!--Navbar-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-colored">
+
+      <h4 class="logo">Eco Cart</h4>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+
+        </ul>
+
+
+        <li class="nav-item"><a href="/crop"><button class="custom-btn2">Buy Product</button></a></li>
+
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <main
+    style="background-image: url('static/olympic img/Homepage Images/11.png'); background-size: cover; background-position: center;">
+
+    <div class="background-container">
+
+      <div class="video-overlay">
+
+        <section class="main-video">
+
+          <div class="video-container">
+            <video src="{{ url_for('static', filename='videos/manipulate text background.mp4') }}" controls autoplay
+              muted></video>
+            <h3 class="title"></h3>
+          </div>
+
+        </section>
+
+        <section class="video-playlist">
+          <h3 class="title">Watch and Learn</h3>
+          <p>Some of Our Favourites &nbsp;</p>
+          <div class="videos">
+            <!-- Video Items Here -->
+            <div class="video" data-id="a1">
+              <h4 class="title">GreenHouse Effect_ How does it really work</h4>
+              <p class="time">3:05</p>
+            </div>
+            <div class="video" data-id="a2">
+              <h4 class="title">Here's How Thrifting Is Great For The Environment</h4>
+              <p class="time">2:10</p>
+            </div>
+            <div class="video" data-id="a3">
+              <h4 class="title">simpleshow explains the Carbon Footprint</h4>
+              <p class="time">2:00</p>
+            </div>
+            <div class="video" data-id="a4">
+              <h4 class="title">Sustainability in everyday life</h4>
+              <p class="time">1:38</p>
+            </div>
+
+          </div>
+        </section>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- Section 7 :: Footer Section -->
+    <section id="Footer">
+
+      <div class="row">
+
+
+        <!-- Logo And Copyright Rights -->
+
+        <div class="Copyright-box col-lg-4">
+
+          <div class="footer-logo">
+
+            <i class="Copyright-icon fas fa-tractor fa-4x"></i>
+            <h6 class="copyright-logo">Farm Ez</h6>
+            <p>@2023.Farm Ez. All rights reserved.</p>
+
+          </div>
+
+        </div>
+
+        <div class="Social-media col-lg-4">
+
+          <p>Social Handles</p>
+
+          <div class="Handles">
+
+            <i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+            <i class="social-icon fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+            <i class="social-icon fa fa-reddit-square fa-3x" aria-hidden="true"></i>
+            <i class="social-icon fa fa-envelope-square fa-3x" aria-hidden="true"></i>
+
+          </div>
+
+        </div>
+
+
+        <div class="Newsletter col-lg-4">
+
+          <p>GET A NEWSLETTER!</p>
+
+          <div class="News">
+
+            <h6>Subscribe To Our Newsletter For Daily Updates.</h6>
+
+            <form class="footer-form">
+              <input type="email" name="Email" placeholder="Your email id" required>
+              <button class="submit-btn" type="submit" class="btn">Submit</button>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      </div>
+
+    </section>
+
+
+
+    <script>
+      // JavaScript for Video Playlist Carousel
+      const mainVideo = document.querySelector(".video-container video");
+      const mainVideoTitle = document.querySelector(".video-container .title");
+      const videoPlaylist = document.querySelector(".video-playlist .videos");
+      const videos = document.querySelectorAll(".video");
+
+      let data = [
+        {
+          id: "a1",
+          title: "GreenHouse Effect_ How does it really work",
+          name: "GreenHouse Effect_ How does it really work.mp4",
+          duration: "3:05",
+        },
+        {
+          id: "a2",
+          title: "Here's How Thrifting Is Great For The Environment",
+          name: "Here's How Thrifting Is Great For The Environment.mp4",
+          duration: "2:10",
+        },
+        {
+          id: "a3",
+          title: "simpleshow explains the Carbon Footprint",
+          name: "simpleshow explains the Carbon Footprint.mp4",
+          duration: "2:00",
+        },
+        {
+          id: "a4",
+          title: "Sustainability in everyday life",
+          name: "Sustainability in everyday life.mp4",
+          duration: "1:38",
+        },
+        {
+          id: "a5",
+          title: "Nadal finally wins GOLD_Rio 2016",
+          name: "Nadal finally wins GOLD_Rio 2016.mp4",
+          duration: "1:00",
+        },
+        {
+          id: "a6",
+          title: "The BEST of Mondo Duplantis At the Olympics",
+          name: "The BEST of Mondo Duplantis at the Olympics.mp4",
+          duration: "6:05",
+        },
+        {
+          id: "a7",
+          title: "Lionel Messi At the Olympics!",
+          name: "Lionel Messi at the Olympics!.mp4",
+          duration: "6:43",
+        },
+      ];
+
+      videos.forEach((video, index) => {
+        video.addEventListener("click", () => showVideo(index));
+      });
+
+      function showVideo(index) {
+        let matchVideo = data[index];
+        mainVideo.src = "static/videos/" + matchVideo.name;
+        mainVideoTitle.textContent = matchVideo.title;
+        videos.forEach((video, idx) => {
+          video.classList.toggle("active", idx === index);
+        });
+      }
+
+      // Show the first video initially
+      showVideo(0);
+    </script>
+
+</body>
+
+</html>
